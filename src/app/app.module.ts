@@ -17,6 +17,7 @@ import { RegisterFormComponent } from './components/forms/register-form/register
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './modules/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     NotFoundComponent,
     ShoppingCarComponent,
     LogingFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,74 @@
+// app.component.scss
+
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo {
+    display: flex;
+    align-items: center;
+
+    a {
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+
+      .mat-icon {
+        font-size: 30px;
+        margin-right: 5px;
+      }
+    }
+  }
+
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+
+    a {
+      color: white;
+      text-decoration: none;
+      margin-right: 20px;
+      font-size: 20px;
+      cursor: pointer;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .right {
+    button {
+      margin-left: 20px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .center {
+      flex-basis: 100%;
+      justify-content: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+
+      a {
+        margin-right: 10px;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .right {
+      margin-left: auto;
+    }
+  }
+}

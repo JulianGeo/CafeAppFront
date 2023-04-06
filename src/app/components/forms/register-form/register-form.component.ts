@@ -84,7 +84,6 @@ export class RegisterFormComponent implements OnInit {
       this.userInitialization()
     ).subscribe((answer) =>{
       console.log(answer);
-
       Swal.fire({
         position: 'top-end',
         icon: 'success',
@@ -92,7 +91,6 @@ export class RegisterFormComponent implements OnInit {
         and in the firebase DB with the email ${response.user.email}`,
         showConfirmButton: true
       })
-      //alert(`User with ID: ${answer.id} has been created in the backend DB`)
     })
 
   }
