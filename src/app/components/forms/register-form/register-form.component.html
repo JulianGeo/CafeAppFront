@@ -14,6 +14,33 @@
 </form>
  -->
 
+
+ <div ngClass="form-container">
+  <form [formGroup]="formRegPersonalInfo" ngClass="register">
+    <mat-form-field appearance="fill">
+      <mat-label>Name: </mat-label>
+      <input matInput type="text" placeholder="Insert name" formControlName="firstName" required/>
+      <div *ngIf="formReg.get('firstName')?.hasError('required') && !formReg.get('firstName')?.pristine">
+        Name is required
+      </div>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Lastname: </mat-label>
+      <input matInput type="text" placeholder="Insert last name" formControlName="lastName" required />
+      <div *ngIf="formReg.get('lastName')?.hasError('required') && !formReg.get('lastName')?.pristine">
+        Lastname is required
+      </div>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>ID number: </mat-label>
+      <input matInput type="text" placeholder="Insert ID number" formControlName="idNum" required />
+      <div *ngIf="formReg.get('idNum')?.hasError('required') && !formReg.get('idNum')?.pristine">
+        ID number is required
+      </div>
+    </mat-form-field>
+  </form>
+</div>
+
 <div ngClass="form-container">
   <form [formGroup]="formReg" ngClass="register">
     <mat-form-field appearance="fill">
@@ -30,7 +57,8 @@
         Password is required
       </div>
     </mat-form-field>
-    <button mat-raised-button color="primary" style="margin: 5px" [disabled]="formReg.invalid" (click)="onSubmit()">Register</button>
+    <button mat-raised-button color="primary" style="margin: 5px" [disabled]="isFormsInvalid()" (click)="onSubmit()">Register</button>
     <button mat-raised-button color="warn" style="margin: 5px" routerLink="/main">Go back</button>
   </form>
 </div>
+
