@@ -1,12 +1,29 @@
-<h2>Registro de usuario</h2>
+<!-- Code commented is from the firebase auth youtube tutorial -->
+
+<!-- <h2>Registro de usuario</h2>
 <form [formGroup]="formReg" (ngSubmit)="onSubmit()">
-    <div class="mb-3">
-        <label class="form-label">Email</label>
-        <input type="text" class="form-control" formControlName="email">
-    </div>
-    <div class="mb-3">
-        <label class="form-label">Password</label>
-        <input type="password" class="form-control" formControlName="password">
-    </div>
-    <input type="submit" value="Enviar">
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input type="text" class="form-control" formControlName="email">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Password</label>
+    <input type="password" class="form-control" formControlName="password">
+  </div>
+  <input type="submit" value="Enviar">
 </form>
+ -->
+
+<div ngClass="form-container">
+  <form [formGroup]="formReg" ngClass="register">
+    <mat-form-field appearance="fill">
+      <mat-label>Email: </mat-label> <input matInput type="email" placeholder="Insert email" formControlName="email" required/>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Password: </mat-label>
+      <input matInput type="password" placeholder="Insert password" formControlName="password" required />
+    </mat-form-field>
+    <button mat-raised-button color="primary" style="margin: 5px" (click)="onSubmit()">Register</button>
+    <button mat-raised-button color="warn" style="margin: 5px" routerLink="/main">Go back</button>
+  </form>
+</div>
