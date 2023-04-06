@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
@@ -17,8 +17,11 @@ export class LogingFormComponent implements OnInit{
     private router: Router
   ) {
     this.formLogin = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl()
+      email: new FormControl(null,[Validators.required, Validators.email]),
+      password: new FormControl(null,
+        [Validators.required,
+          //Validator for password, at least 5 characters, at least one letter and one number
+          Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{5,}$')])
     })
   }
 
