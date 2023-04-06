@@ -32,6 +32,8 @@ export class UsersApiService {
 
 
   post(user:User):  Observable<any> {
+    console.log("The sent user is:" + user);
+    console.log("The sent user name is:" + user.name);
     return this.http.post(this.api, user);
   }
 

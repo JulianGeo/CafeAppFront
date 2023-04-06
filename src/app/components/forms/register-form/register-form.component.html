@@ -19,15 +19,15 @@
   <form [formGroup]="formRegPersonalInfo" ngClass="register">
     <mat-form-field appearance="fill">
       <mat-label>Name: </mat-label>
-      <input matInput type="text" placeholder="Insert name" formControlName="firstName" required/>
-      <div *ngIf="formReg.get('firstName')?.hasError('required') && !formReg.get('firstName')?.pristine">
+      <input matInput type="text" placeholder="Insert name" formControlName="name" required/>
+      <div *ngIf="formReg.get('name')?.hasError('required') && !formReg.get('name')?.pristine">
         Name is required
       </div>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Lastname: </mat-label>
-      <input matInput type="text" placeholder="Insert last name" formControlName="lastName" required />
-      <div *ngIf="formReg.get('lastName')?.hasError('required') && !formReg.get('lastName')?.pristine">
+      <input matInput type="text" placeholder="Insert last name" formControlName="lastname" required />
+      <div *ngIf="formReg.get('lastname')?.hasError('required') && !formReg.get('lastname')?.pristine">
         Lastname is required
       </div>
     </mat-form-field>

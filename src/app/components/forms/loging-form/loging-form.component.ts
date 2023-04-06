@@ -21,7 +21,7 @@ export class LogingFormComponent implements OnInit{
       password: new FormControl(null,
         [Validators.required,
           //Validator for password, at least 5 characters, at least one letter and one number
-          Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{5,}$')])
+          Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$')])
     })
   }
 
