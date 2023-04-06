@@ -1,0 +1,30 @@
+<!-- The commented code is related with the youtube tutorial about firebase auth -->
+
+<!-- <h2>Login de usuario</h2>
+<form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="text" class="form-control" formControlName="email">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" formControlName="password">
+    </div>
+    <input type="submit" value="Enviar">
+</form>
+<button class="btn btn-info" (click)="onClick()">Login With Google</button>
+ -->
+
+<div ngClass="form-container">
+  <form [formGroup] = "formLogin" ngClass="register">
+    <mat-form-field appearance="fill" >
+        <mat-label>Email: </mat-label>  <input matInput placeholder="Insert email" formControlName="email"/>
+    </mat-form-field>
+    <mat-form-field appearance="fill" >
+        <mat-label>Password: </mat-label> <input matInput placeholder="Insert password" formControlName="password"/>
+    </mat-form-field>
+    <button mat-raised-button color="primary" style="margin: 5px" (click)="onSubmit()">Login</button>
+    <button mat-raised-button color="warn" style="margin: 5px" (click)="onClick()">Login With Google</button>
+    <button mat-raised-button color="warn" style="margin: 5px" routerLink="/main">Go back</button>
+  </form>
+  </div>
