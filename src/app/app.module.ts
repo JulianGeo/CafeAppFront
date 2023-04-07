@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './modules/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { MainFooterComponent } from './components/main-footer/main-footer.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ShoppingCarComponent,
     LogingFormComponent,
     RegisterFormComponent,
-    NavbarComponent
+    NavbarComponent,
+    MainFooterComponent,
+
   ],
   imports: [
     BrowserModule,
