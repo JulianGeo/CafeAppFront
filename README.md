@@ -29,3 +29,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Technologies
 [SweetAlert2](https://sweetalert2.github.io/)
+[CoreUI](https://coreui.io/)

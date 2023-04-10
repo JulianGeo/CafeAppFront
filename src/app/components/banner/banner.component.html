@@ -1,0 +1,24 @@
+<!-- <c-carousel>
+  <c-carousel-item>
+    <img src="https://images.pexels.com/photos/2836945/pexels-photo-2836945.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="First Image" />
+  </c-carousel-item>
+  <c-carousel-item>
+    <img src="https://images.pexels.com/photos/2836945/pexels-photo-2836945.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Second Image" />
+  </c-carousel-item>
+  <c-carousel-item>
+    <img src="https://images.pexels.com/photos/2836945/pexels-photo-2836945.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Third Image" />
+  </c-carousel-item>
+</c-carousel> -->
+
+<div class="carousel-container">
+  <c-carousel>
+    <c-carousel-indicators></c-carousel-indicators>
+    <c-carousel-inner>
+      <c-carousel-item *ngFor="let slide of slides">
+        <img [src]="slide.src" alt="{{slide.title}}" class="d-block w-100" loading="lazy" />
+      </c-carousel-item>
+    </c-carousel-inner>
+    <c-carousel-control caption="Previous" direction="prev"></c-carousel-control>
+    <c-carousel-control caption="Next" direction="next"></c-carousel-control>
+  </c-carousel>
+</div>

@@ -10,6 +10,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import {MatCardModule} from '@angular/material/card';
 import { MatSelectModule} from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CarouselModule } from '@coreui/angular';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatExpansionModule,
     MatCardModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    CarouselModule
   ]}
 )
 export class MaterialModule { }

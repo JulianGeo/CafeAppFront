@@ -19,6 +19,10 @@ import { MaterialModule } from './modules/material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MainFooterComponent } from './components/main-footer/main-footer.component';
+import { BannerComponent } from './components/banner/banner.component';
+import { ItemComponent } from './components/items/item/item.component';
+import { ItemListComponent } from './components/items/item-list/item-list.component';
+import { ItemListContainerComponent } from './components/items/item-list-container/item-list-container.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,10 @@ import { MainFooterComponent } from './components/main-footer/main-footer.compon
     RegisterFormComponent,
     NavbarComponent,
     MainFooterComponent,
+    BannerComponent,
+    ItemComponent,
+    ItemListComponent,
+    ItemListContainerComponent,
 
   ],
   imports: [
