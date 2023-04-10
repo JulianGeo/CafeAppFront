@@ -1,1 +1,5 @@
-<app-item></app-item>
+<div ngClass="items-list" *ngIf="total > 0">
+  <app-item
+  *ngFor="let i_item of l_items"
+  [item] = "i_item"></app-item>
+</div>
