@@ -1,1 +1,52 @@
-<p>shopping-cart works!</p>
+<div class="shopping-cart-container">
+  <div class="cart-items-container">
+    <div class="cart-item" *ngFor="let item of items">
+      <div class="cart-item-image">
+        <img [src]="item.imageUrl" alt="{{ item.name }}" />
+      </div>
+      <div class="cart-item-details">
+        <div class="cart-item-name">{{ item.name }}</div>
+        <div class="cart-item-price">{{ item.price | currency }}</div>
+        <div class="cart-item-quantity">
+          <!-- <button mat-icon-button (click)="decreaseQuantity(item)"> -->
+          <button mat-icon-button>
+            <mat-icon>remove_circle_outline</mat-icon>
+          </button>
+          <!-- <div>{{ item.quantity }}</div> -->
+          <div>{{ item.name }}</div>
+          <!-- <button mat-icon-button (click)="increaseQuantity(item)"> -->
+          <button mat-icon-button>
+            <mat-icon>add_circle_outline</mat-icon>
+          </button>
+        </div>
+        <div class="cart-item-remove">
+          <button mat-icon-button (click)="removeFromCart(item)">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cart-summary-container">
+    <div class="cart-summary">
+      <div class="cart-summary-row">
+        <div class="cart-summary-label">Subtotal:</div>
+        <div class="cart-summary-value">{{ "50" | currency }}</div>
+        <!-- <div class="cart-summary-value">{{ subtotal | currency }}</div> -->
+      </div>
+      <div class="cart-summary-row">
+        <div class="cart-summary-label">Shipping:</div>
+       <!--  <div class="cart-summary-value">{{ shipping | currency }}</div> -->
+      </div>
+      <div class="cart-summary-row">
+        <div class="cart-summary-label">Tax:</div>
+        <!-- <div class="cart-summary-value">{{ tax | currency }}</div> -->
+      </div>
+      <div class="cart-summary-row">
+        <div class="cart-summary-label">Total:</div>
+       <!--  <div class="cart-summary-value">{{ total | currency }}</div> -->
+      </div>
+    </div>
+  </div>
+</div>
