@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { UsersApiService } from 'src/app/services/usersapi.service';
 
 @Component({
   selector: 'app-loging-form',
@@ -14,6 +15,7 @@ export class LogingFormComponent implements OnInit{
 
   constructor(
     private userService: UserService,
+    private userApiService: UsersApiService,
     private router: Router
   ) {
     this.formLogin = new FormGroup({
@@ -28,16 +30,29 @@ export class LogingFormComponent implements OnInit{
   ngOnInit(): void {
   }
 
-  onSubmit() {
+
+  fetchUserData(): void {
+    this.userApiService.getByEmail(this.formLogin.value.email)
+    .subscribe(user => {
+        console.log(user);
+        localStorage.setItem('user', JSON.stringify(user));
+        //this.router.navigate(['/home']);
+      });
+
+  }
+
+
+  onSubmit(): void {
     this.userService.login(this.formLogin.value)
       .then(response => {
         console.log(response)
-        this.router.navigate(['/main']);
+        this.fetchUserData();
+        this.router.navigate(['/main'])
       })
       .catch(error => console.log(error));
   }
 
-  onClick() {
+  onClick(): void {
     this.userService.loginWithGoogle()
       .then(response => {
         console.log(response);
