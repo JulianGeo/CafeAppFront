@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Order } from 'src/app/models/order.model';
 import { UserService } from 'src/app/services/user.service';
 import { UsersApiService } from 'src/app/services/usersapi.service';
 
@@ -37,6 +38,10 @@ export class LogingFormComponent implements OnInit{
         console.log(user);
         localStorage.setItem('user', JSON.stringify(user));
         localStorage.setItem('items', JSON.stringify([]));
+        let order:Order = {
+          user: user,
+        }
+        localStorage.setItem('order', JSON.stringify(order));
         //this.router.navigate(['/home']);
       });
 
