@@ -8,7 +8,7 @@ import { Item } from 'src/app/models/item.model';
 })
 export class ItemComponent {
 
-  private items: any[]|undefined|null;
+  private items: Set<any>|undefined|null;
 
   @Input() item: Item = {
     name: '',
@@ -19,8 +19,12 @@ export class ItemComponent {
 
   addToCart() {
     let items: any[] = JSON.parse(localStorage.getItem('items') || '[]');
-    items?.push(this.item);
-    localStorage.setItem('items', JSON.stringify(items));
+    if (!(items?.filter(i => i.name === this.item.name).length>0)){
+      items?.push(this.item);
+      localStorage.setItem('items', JSON.stringify(items));
+
+      //localStorage.setItem('order', JSON.stringify(items));
+    }
     console.log('item added to cart');
   }
 

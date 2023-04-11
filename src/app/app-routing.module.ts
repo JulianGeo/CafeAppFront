@@ -8,6 +8,7 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ItemListContainerComponent } from './components/items/item-list-container/item-list-container.component';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
+import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LogingFormComponent
+  },
+  {
+    path: 'shoppingcart',
+    component: ShoppingCartComponent,
   },
 /*   {
     path: 'items',
