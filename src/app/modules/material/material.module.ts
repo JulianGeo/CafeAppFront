@@ -11,7 +11,7 @@ import {MatCardModule} from '@angular/material/card';
 import { MatSelectModule} from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CarouselModule } from '@coreui/angular';
-
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [],
@@ -27,6 +27,7 @@ import { CarouselModule } from '@coreui/angular';
     MatCardModule,
     MatSelectModule,
     MatDialogModule,
+    MatTabsModule,
     CarouselModule
   ]}
 )

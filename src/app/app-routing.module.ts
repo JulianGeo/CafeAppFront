@@ -4,16 +4,70 @@ import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { RegisterFormComponent } from './components/forms/register-form/register-form.component';
 import { LogingFormComponent } from './components/forms/loging-form/loging-form.component';
+import { AboutUsComponent } from './pages/about-us/about-us.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ItemListContainerComponent } from './components/items/item-list-container/item-list-container.component';
+import { AuthenticationComponent } from './pages/authentication/authentication.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/main' },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: '/main'
+  },
+
   {
     path: 'main',
     component: HomepageComponent,
-    ...canActivate(() => redirectUnauthorizedTo(['/register']))
+    ...canActivate(() => redirectUnauthorizedTo(['/register'])),
   },
-  { path: 'register', component: RegisterFormComponent },
-  { path: 'login', component: LogingFormComponent }
+
+  {
+    path: 'main',
+
+    children: [
+      {
+        path: 'items',
+        component: ItemListContainerComponent
+      },
+      {
+        path: 'places',
+        component: NotFoundComponent
+      },
+      {
+        path: 'about-us',
+        component: AboutUsComponent
+      }
+    ]
+  },
+  {
+    path: 'register',
+    component: RegisterFormComponent
+  },
+  {
+    path: 'auth',
+    component: AuthenticationComponent
+  },
+  {
+    path: 'login',
+    component: LogingFormComponent
+  },
+/*   {
+    path: 'items',
+    component: ItemListContainerComponent
+  },
+  {
+    path: 'places',
+    component: LogingFormComponent
+  },
+  {
+    path: 'about-us',
+    component: AboutUsComponent
+  }, */
+  {
+    path: '**',
+    component: NotFoundComponent
+  }
 ];
 
 @NgModule({

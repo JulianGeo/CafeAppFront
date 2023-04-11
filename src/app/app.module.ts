@@ -23,6 +23,8 @@ import { BannerComponent } from './components/banner/banner.component';
 import { ItemComponent } from './components/items/item/item.component';
 import { ItemListComponent } from './components/items/item-list/item-list.component';
 import { ItemListContainerComponent } from './components/items/item-list-container/item-list-container.component';
+import { MatTabNav } from '@angular/material/tabs';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,7 @@ import { ItemListContainerComponent } from './components/items/item-list-contain
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth())
   ],
-  providers: [],
+  providers: [MatTabNav, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

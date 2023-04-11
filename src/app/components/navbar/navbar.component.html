@@ -6,12 +6,21 @@
   </div>
 
   <div class="center">
-    <a mat-tab-link routerLink="/our-places">Our Products</a>
-    <a mat-tab-link routerLink="/our-places">Our Places</a>
-    <a mat-tab-link routerLink="/about-us">About Us</a>
+    <a mat-tab-link routerLink="/main/items">Our Products</a>
+    <a mat-tab-link routerLink="/main/places">Our Places</a>
+    <a mat-tab-link routerLink="/main/about-us">About Us</a>
   </div>
 
   <div class="right">
-    <button mat-raised-button routerLink="/sign-in">Sign In</button>
+    <button
+    *ngIf="isLoggedInn(); else notLoggedIn"
+    mat-raised-button color="warn"
+    routerLink="/login"
+    (click)="logout()"
+    >Logout
+  </button>
+    <ng-template #notLoggedIn>
+      <button mat-raised-button routerLink="/login">Login</button>
+    </ng-template>
   </div>
 </mat-toolbar>
