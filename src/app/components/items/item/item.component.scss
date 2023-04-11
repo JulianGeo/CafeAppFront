@@ -10,6 +10,16 @@
   //background-color: blue;
 }
 
+.item-purchase{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.button-addItem{
+
+}
+
 
 hr {
   border-style: dashed;

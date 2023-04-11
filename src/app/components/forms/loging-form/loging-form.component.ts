@@ -36,6 +36,7 @@ export class LogingFormComponent implements OnInit{
     .subscribe(user => {
         console.log(user);
         localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('items', JSON.stringify([]));
         //this.router.navigate(['/home']);
       });
 

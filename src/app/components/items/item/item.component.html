@@ -8,8 +8,14 @@
     <span>
       <p>{{item.description}}</p>
     </span>
-    <span>
-      <p>$ {{item.price}}</p>
-    </span>
+    <div ngClass="item-purchase">
+      <span>
+        <p>$ {{item.price}}</p>
+      </span>
+      <button ngClass="button-addItem" mat-raised-button color="primary" (click)="addToCart()">
+        <mat-icon>add_shopping_cart</mat-icon>
+        Add to cart
+      </button>
+    </div>
   </div>
 </div>

@@ -11,7 +11,6 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { ShoppingCarComponent } from './pages/shopping-car/shopping-car.component';
 import { LogingFormComponent } from './components/forms/loging-form/loging-form.component';
 import { RegisterFormComponent } from './components/forms/register-form/register-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,6 +24,7 @@ import { ItemListComponent } from './components/items/item-list/item-list.compon
 import { ItemListContainerComponent } from './components/items/item-list-container/item-list-container.component';
 import { MatTabNav } from '@angular/material/tabs';
 import { UserService } from './services/user.service';
+import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,6 @@ import { UserService } from './services/user.service';
     AuthenticationComponent,
     HomepageComponent,
     NotFoundComponent,
-    ShoppingCarComponent,
     LogingFormComponent,
     RegisterFormComponent,
     NavbarComponent,
@@ -42,6 +41,7 @@ import { UserService } from './services/user.service';
     ItemComponent,
     ItemListComponent,
     ItemListContainerComponent,
+    ShoppingCartComponent,
 
   ],
   imports: [

@@ -53,7 +53,6 @@ export class RegisterFormComponent implements OnInit {
       .then(response => {
         console.log(response);
         this.userApiPost(response);
-        this.router.navigate(['/login']);
         //alert(`User with email: ${response.user.email} has been created in the firebase DB`)
       })
       .catch(error => console.log(error));
@@ -91,6 +90,7 @@ export class RegisterFormComponent implements OnInit {
         and in the firebase DB with the email ${response.user.email}`,
         showConfirmButton: true
       })
+      this.router.navigate(['/login']);
     })
 
   }
