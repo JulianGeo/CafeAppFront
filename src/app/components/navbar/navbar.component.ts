@@ -15,7 +15,7 @@ export class NavbarComponent {
     ) {}
 
   isLoggedInn(): boolean{
-    console.log(("the state is:" +this.userService.getState()));
+    //console.log(("the state is:" +this.userService.getState()));
     return this.userService.getState();
   }
 

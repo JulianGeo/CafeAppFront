@@ -23,7 +23,7 @@ export class LogingFormComponent implements OnInit{
       email: new FormControl(null,[Validators.required, Validators.email]),
       password: new FormControl(null,
         [Validators.required,
-          //Validator for password, at least 5 characters, at least one letter and one number
+          //Validator for password, at least 6 characters, at least one letter and one number
           Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$')])
     })
   }
@@ -38,10 +38,16 @@ export class LogingFormComponent implements OnInit{
         console.log(user);
         localStorage.setItem('user', JSON.stringify(user));
         localStorage.setItem('items', JSON.stringify([]));
-        let order:Order = {
+        localStorage.setItem('itemsQuantity', JSON.stringify([]));
+/*         let order:Order = {
           user: user,
+          items: [],
+          subtotal: 0,
+          total: 0,
+          shipping: 0,
+          itemsQuantity: new Map<string, number>(),
         }
-        localStorage.setItem('order', JSON.stringify(order));
+        localStorage.setItem('order', JSON.stringify(order)); */
         //this.router.navigate(['/home']);
       });
 
@@ -51,7 +57,7 @@ export class LogingFormComponent implements OnInit{
   onSubmit(): void {
     this.userService.login(this.formLogin.value)
       .then(response => {
-        console.log(response)
+        //console.log(response)
         this.fetchUserData();
         this.router.navigate(['/main'])
       })
@@ -61,7 +67,7 @@ export class LogingFormComponent implements OnInit{
   onClick(): void {
     this.userService.loginWithGoogle()
       .then(response => {
-        console.log(response);
+        //console.log(response);
         this.router.navigate(['/main']);
       })
       .catch(error => console.log(error))

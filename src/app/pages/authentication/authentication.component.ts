@@ -17,7 +17,7 @@ export class AuthenticationComponent {
     ) {}
 
   isLoggedInn(): void{
-    console.log(("the state is:" +this.userService.getState()));
+    //console.log(("the state is:" +this.userService.getState()));
   }
 
 

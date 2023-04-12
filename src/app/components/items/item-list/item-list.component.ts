@@ -22,7 +22,7 @@ export class ItemListComponent implements OnInit {
         this.l_items = items.filter(
           (item: { category: string; }) => item.category===this.category
           ),
-          console.log(items)
+          //console.log(items)
         this.total = this.l_items.length;
       },
       error: (console.log),
