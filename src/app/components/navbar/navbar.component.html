@@ -1,4 +1,4 @@
-<mat-toolbar >
+<mat-toolbar>
   <div class="logo">
     <a routerLink="/">
       <!-- <mat-icon>local_cafe</mat-icon> -->
@@ -13,15 +13,18 @@
   </div>
 
   <div class="right">
-    <button
-    *ngIf="isLoggedInn(); else notLoggedIn"
-    mat-raised-button color="warn"
-    routerLink="/login"
-    (click)="logout()"
-    >Logout
-  </button>
+    <div ngClass="shopping-cart-container">
+      <a routerLink="/shoppingcart">
+        <mat-icon>shopping_cart</mat-icon>
+      </a>
+    </div>
+    <div ngClass="login-button">
+    <button *ngIf="isLoggedInn(); else notLoggedIn" mat-raised-button color="warn" routerLink="/login"
+      (click)="logout()">Logout
+    </button>
     <ng-template #notLoggedIn>
       <button mat-raised-button routerLink="/login">Login</button>
     </ng-template>
+  </div>
   </div>
 </mat-toolbar>

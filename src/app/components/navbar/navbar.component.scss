@@ -56,6 +56,14 @@ mat-toolbar {
   }
 
   .right {
+    display: flex;
+    flex-direction: row;
+
+    mat-icon{
+      margin-top: 5px;
+      color: rgb(0, 0, 0);
+    }
+
     button {
       margin-left: 20px;
     }
@@ -79,6 +87,10 @@ mat-toolbar {
 
     .right {
       margin-left: auto;
+    }
+
+    .logo{
+      display: none;
     }
   }
 }
