@@ -11,6 +11,7 @@ export class ItemListComponent implements OnInit {
 
   l_items: Item[] = [];
   total: number = this.l_items.length;
+  p: number = 1;
   @Input() category: string = "";
 
   constructor(private service: ItemsApiService) { }

@@ -1,6 +1,18 @@
+
+.item-list-component-container{
+  justify-content: center;
+  flex-direction: column;
+}
+
+.paginator{
+  text-align: center;
+}
+
 .items-list{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
+
+

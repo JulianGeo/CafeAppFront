@@ -25,6 +25,8 @@ import { ItemListContainerComponent } from './components/items/item-list-contain
 import { MatTabNav } from '@angular/material/tabs';
 import { UserService } from './services/user.service';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.compo
     MaterialModule,
     FormsModule,
     HttpClientModule,
+    NgxPaginationModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth())
   ],
