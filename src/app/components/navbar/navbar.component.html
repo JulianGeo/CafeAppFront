@@ -20,7 +20,7 @@
     </div>
     <div ngClass="login-button">
       <button *ngIf="isLoggedInn(); else notLoggedIn" mat-raised-button routerLink="/login" (click)="logout()">
-        logout
+        Logout
         <mat-icon>logout</mat-icon>
       </button>
       <ng-template #notLoggedIn>
