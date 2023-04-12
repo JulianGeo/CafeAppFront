@@ -4,9 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideAuth, getAuth } from '@angular/fire/auth';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
@@ -15,7 +15,7 @@ import { LogingFormComponent } from './components/forms/loging-form/loging-form.
 import { RegisterFormComponent } from './components/forms/register-form/register-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './modules/material/material.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MainFooterComponent } from './components/main-footer/main-footer.component';
 import { BannerComponent } from './components/banner/banner.component';
@@ -26,7 +26,8 @@ import { MatTabNav } from '@angular/material/tabs';
 import { UserService } from './services/user.service';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { CarouselModule } from 'ngx-owl-carousel-o';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     ItemListComponent,
     ItemListContainerComponent,
     ShoppingCartComponent,
+    SpinnerComponent,
 
   ],
   imports: [
@@ -56,11 +58,15 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,
-    CarouselModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth())
   ],
-  providers: [MatTabNav, UserService],
+  providers: [
+    MatTabNav,
+    UserService,
+    {
+      provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

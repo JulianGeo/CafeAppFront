@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Item } from 'src/app/models/item.model';
 import { ItemsApiService } from 'src/app/services/itemsapi.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-item-list',
@@ -14,7 +15,8 @@ export class ItemListComponent implements OnInit {
   p: number = 1;
   @Input() category: string = "";
 
-  constructor(private service: ItemsApiService) { }
+  constructor(
+    private service: ItemsApiService) { }
 
 
   ngOnInit(): void {
