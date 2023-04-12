@@ -4,6 +4,7 @@ import { Item } from 'src/app/models/item.model';
 import { Order } from 'src/app/models/order.model';
 import { OrdersApiService } from 'src/app/services/ordersapi.service';
 import { UsersApiService } from 'src/app/services/usersapi.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -18,9 +19,11 @@ export class ShoppingCartComponent implements OnInit {
   items: Item[] = [];
   uniqueItems: Item[] = this.items.filter((item, i, arr) => arr.findIndex(itm => itm.name === item.name) === i);
   itemsQuantity: Map<string, number> = new Map<string, number>();
-  total = 0;
   delivery: boolean = false;
   deliveryCost: number = 0;
+  subtotal: number = 0;
+  total: number= 0;
+
 
 
   constructor(
@@ -52,11 +55,16 @@ export class ShoppingCartComponent implements OnInit {
 
 
   removeFromCart(item: Item): void {
-    var index: number = this.items.indexOf(item);
-    this.items.splice(index, 1);
+
+    this.items = this.items?.filter((i: { name: string; }) => i.name !== item.name);
+    this.uniqueItems = this.items.filter((item, i, arr) => arr.findIndex(itm => itm.name === item.name) === i);
+    //var index: number = this.items.indexOf(item);
+    //this.items.splice(index, 1);
     localStorage.setItem('items', JSON.stringify(this.items));
     this.calculateTotal();
   }
+
+
 
   clearCart(): void {
     this.items = [];
@@ -73,6 +81,7 @@ export class ShoppingCartComponent implements OnInit {
     this.itemsQuantity.set(item.name, filteredItems.length)
     //save in local storage
     localStorage.setItem('items', JSON.stringify(items));
+    this.calculateTotal();
   }
 
   decreaseQuantity(item: Item): void {
@@ -89,6 +98,8 @@ export class ShoppingCartComponent implements OnInit {
 
       //save in local storage
       localStorage.setItem('items', JSON.stringify(allItems));
+      this.calculateTotal();
+
     }
   }
 
@@ -100,13 +111,18 @@ export class ShoppingCartComponent implements OnInit {
 
 
   calculateTotal(): void {
-    this.total = 0;
+    this.items = JSON.parse(localStorage.getItem('items') || "[]");
+    this.subtotal = 0;
+    this.total=0;
+
     if (this.items) {
       this.items.forEach(item => {
-        this.total += item.price;
+        this.subtotal += item.price;
       });
     }
+    this.total = this.subtotal + this.deliveryCost;
   }
+
 
   enableDelivery(): void {
     this.delivery = !this.delivery;
@@ -116,26 +132,47 @@ export class ShoppingCartComponent implements OnInit {
     } else {
       this.deliveryCost = 0;
     }
+
+    this.calculateTotal();
   }
 
 
   placeOrder(): void {
-    console.log(this.intializeOder());
-    this.orderApiService.post(this.intializeOder()).subscribe((answer) => {
-      console.log(answer);
-      localStorage.removeItem('items');
-      window.location.reload();
-    });
-    console.log('order placed');
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You will need to call the admin to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, place it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your order has been placed.',
+          'success'
+        )
+        console.log(this.intializeOder());
+        this.orderApiService.post(this.intializeOder()).subscribe((answer) => {
+          console.log(answer);
+        });
+        localStorage.removeItem('items');
+        window.location.reload();
+      }
+    })
+    //console.log('order placed');
   }
 
   intializeOder(): Order {
-
+    this.calculateTotal();
     let newOrder: Order = {
       user: JSON.parse(localStorage.getItem('user') || "[]"),
       items: JSON.parse(localStorage.getItem('items') || "[]"),
       status: "pending",
-      shipping: 15
+      shipping: this.deliveryCost,
+      subtotal: this.subtotal,
+      total: this.total
     };
 
     return newOrder;
