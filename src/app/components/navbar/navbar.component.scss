@@ -4,20 +4,30 @@ mat-toolbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: rgb(255, 255, 255);
 
   .logo {
     display: flex;
     align-items: center;
+    margin-left: 0px;
+    padding: 10px;
 
     a {
       color: white;
       text-decoration: none;
       display: flex;
       align-items: center;
+      margin-left: 0px;
 
-      .mat-icon {
+     /*  .mat-icon {
         font-size: 30px;
         margin-right: 5px;
+      } */
+
+      img {
+        width: 100px;
+        height: auto;
+        //margin-left: 10px;
       }
     }
   }
