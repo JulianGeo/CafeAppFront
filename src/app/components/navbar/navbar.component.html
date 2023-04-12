@@ -7,9 +7,9 @@
   </div>
 
   <div class="center">
-    <a mat-tab-link routerLink="/main/items">Our Products</a>
-    <a mat-tab-link routerLink="/main/places">Our Places</a>
-    <a mat-tab-link routerLink="/main/about-us">About Us</a>
+    <a mat-tab routerLink="/main/items">Our Products</a>
+    <a mat-tab routerLink="/main/places">Our Places</a>
+    <a mat-tab routerLink="/main/about-us">About Us</a>
   </div>
 
   <div class="right">
@@ -19,7 +19,7 @@
       </a>
     </div>
     <div ngClass="login-button">
-      <button *ngIf="isLoggedInn(); else notLoggedIn" mat-raised-button routerLink="/login" (click)="logout()">
+      <button *ngIf="isLoggedIn(); else notLoggedIn" mat-raised-button routerLink="/login" (click)="logout()">
         Logout
         <mat-icon>logout</mat-icon>
       </button>

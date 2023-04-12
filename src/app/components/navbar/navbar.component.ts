@@ -14,7 +14,7 @@ export class NavbarComponent {
     private router: Router
     ) {}
 
-  isLoggedInn(): boolean{
+  isLoggedIn(): boolean{
     //console.log(("the state is:" +this.userService.getState()));
     return this.userService.getState();
   }
