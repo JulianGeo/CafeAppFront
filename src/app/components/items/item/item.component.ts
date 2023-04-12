@@ -21,18 +21,14 @@ export class ItemComponent {
   // a ts map cannot be directly stored in the local storage, a string conversion is required
   addToCart() {
     let items: any[] = JSON.parse(localStorage.getItem('items') || '[]');
-    let itemsQuantity = JSON.parse(localStorage.getItem('itemsQuantity') || '[]') as [string, number][];
-    let itemsQuantity2 = new Map<string, number>(itemsQuantity);
 
     if (!(items?.filter(i => i.name === this.item.name).length>0)){
       //console.log("this is the list of maps")
       //console.log(itemsQuantity);
       items?.push(this.item);
-      itemsQuantity2?.set(this.item.name,1);
       //console.log("itemQuantity2");
       //console.log(itemsQuantity2);
       localStorage.setItem('items', JSON.stringify(items));
-      localStorage.setItem('itemsQuantity', JSON.stringify(Array.from(itemsQuantity2,  map => [...map])));
     }
 
 /*    if(order.items && order.itemsQuantity){

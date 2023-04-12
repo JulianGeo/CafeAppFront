@@ -12,6 +12,7 @@ import { MatSelectModule} from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CarouselModule } from '@coreui/angular';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [],
@@ -28,7 +29,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatSelectModule,
     MatDialogModule,
     MatTabsModule,
-    CarouselModule
+    CarouselModule,
+    MatSlideToggleModule
   ]}
 )
 export class MaterialModule { }

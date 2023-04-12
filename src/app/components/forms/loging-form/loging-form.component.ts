@@ -38,7 +38,6 @@ export class LogingFormComponent implements OnInit{
         console.log(user);
         localStorage.setItem('user', JSON.stringify(user));
         localStorage.setItem('items', JSON.stringify([]));
-        localStorage.setItem('itemsQuantity', JSON.stringify([]));
 /*         let order:Order = {
           user: user,
           items: [],

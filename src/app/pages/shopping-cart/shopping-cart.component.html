@@ -1,6 +1,6 @@
 <div class="shopping-cart-container">
   <div class="cart-items-container">
-    <div class="cart-item" *ngFor="let item of items">
+    <div class="cart-item" *ngFor="let item of uniqueItems">
       <div class="cart-item-image">
         <img [src]="item.imageUrl" alt="{{ item.name }}" />
       </div>
@@ -11,7 +11,7 @@
           <button mat-icon-button (click)="decreaseQuantity(item)">
             <mat-icon>remove_circle_outline</mat-icon>
           </button>
-          <!-- <div>{{ item.quantity }}</div> -->
+          <div>{{ itemsQuantity.get(item.name) }}</div>
           <div>{{ item.name }}</div>
           <button mat-icon-button (click)="increaseQuantity(item)">
             <!-- <button mat-icon-button> -->
@@ -25,10 +25,19 @@
         </div>
       </div>
     </div>
-    <button mat-raised-button color="primary" style="margin: 5px" (click)="placeOrder()">Place Order</button>
+    <div ngClass="order-settings">
+      <button mat-raised-button color="primary" style="margin: 5px" (click)="placeOrder()">Place Order</button>
+    </div>
+
   </div>
 
   <div class="cart-summary-container">
+    <mat-slide-toggle
+    class="shipping-slider"
+    checked=false
+    (click)="enableDelivery()">
+      Delivery
+    </mat-slide-toggle>
     <div class="cart-summary">
       <div class="cart-summary-row">
         <div class="cart-summary-label">Subtotal:</div>
@@ -36,12 +45,8 @@
         <!-- <div class="cart-summary-value">{{ subtotal | currency }}</div> -->
       </div>
       <div class="cart-summary-row">
-        <div class="cart-summary-label">Shipping:</div>
-        <!--  <div class="cart-summary-value">{{ shipping | currency }}</div> -->
-      </div>
-      <div class="cart-summary-row">
-        <div class="cart-summary-label">Tax:</div>
-        <!-- <div class="cart-summary-value">{{ tax | currency }}</div> -->
+        <div class="cart-summary-label">Delivery:</div>
+        <div class="cart-summary-value">{{ deliveryCost | currency }}</div>
       </div>
       <div class="cart-summary-row">
         <div class="cart-summary-label">Total:</div>
