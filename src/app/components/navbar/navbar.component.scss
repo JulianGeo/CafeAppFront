@@ -19,7 +19,7 @@ mat-toolbar {
       align-items: center;
       margin-left: 0px;
 
-     /*  .mat-icon {
+      /*  .mat-icon {
         font-size: 30px;
         margin-right: 5px;
       } */
@@ -39,7 +39,7 @@ mat-toolbar {
     flex-grow: 1;
 
     a {
-      color: white;
+      color: rgb(245, 65, 65);
       text-decoration: none;
       margin-right: 20px;
       font-size: 20px;
@@ -59,14 +59,26 @@ mat-toolbar {
     display: flex;
     flex-direction: row;
 
-    mat-icon{
+    mat-icon {
       margin-top: 5px;
       color: rgb(0, 0, 0);
     }
 
+    .login-button {
+
+      mat-icon {
+        margin-bottom: 5px;
+        color: rgb(255, 255, 255);
+      }
+
+    }
+
     button {
       margin-left: 20px;
+      background-color: rgba(156, 39, 9, 0.562);
     }
+
+
   }
 
   @media screen and (max-width: 600px) {
@@ -89,7 +101,7 @@ mat-toolbar {
       margin-left: auto;
     }
 
-    .logo{
+    .logo {
       display: none;
     }
   }

@@ -19,12 +19,16 @@
       </a>
     </div>
     <div ngClass="login-button">
-    <button *ngIf="isLoggedInn(); else notLoggedIn" mat-raised-button color="warn" routerLink="/login"
-      (click)="logout()">Logout
-    </button>
-    <ng-template #notLoggedIn>
-      <button mat-raised-button routerLink="/login">Login</button>
-    </ng-template>
-  </div>
+      <button *ngIf="isLoggedInn(); else notLoggedIn" mat-raised-button routerLink="/login" (click)="logout()">
+        logout
+        <mat-icon>logout</mat-icon>
+      </button>
+      <ng-template #notLoggedIn>
+        <button mat-raised-button routerLink="/login">
+          <mat-icon>login</mat-icon>
+          Login
+        </button>
+      </ng-template>
+    </div>
   </div>
 </mat-toolbar>
