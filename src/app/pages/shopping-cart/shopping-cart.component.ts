@@ -22,7 +22,9 @@ export class ShoppingCartComponent implements OnInit {
   delivery: boolean = false;
   deliveryCost: number = 0;
   subtotal: number = 0;
-  total: number= 0;
+  total: number = 0;
+  orderStatus: string = 'ongoing';
+  order: Order | undefined = JSON.parse(localStorage.getItem('order') || "[]");
 
 
 
@@ -67,8 +69,9 @@ export class ShoppingCartComponent implements OnInit {
 
 
   clearCart(): void {
-    this.items = [];
-    localStorage.removeItem('items');
+    localStorage.setItem('items', JSON.stringify([]));
+    this.items = JSON.parse(localStorage.getItem('items') || "[]");
+    this.uniqueItems = this.items.filter((item, i, arr) => arr.findIndex(itm => itm.name === item.name) === i);
     this.calculateTotal();
   }
 
@@ -113,7 +116,7 @@ export class ShoppingCartComponent implements OnInit {
   calculateTotal(): void {
     this.items = JSON.parse(localStorage.getItem('items') || "[]");
     this.subtotal = 0;
-    this.total=0;
+    this.total = 0;
 
     if (this.items) {
       this.items.forEach(item => {
@@ -121,6 +124,8 @@ export class ShoppingCartComponent implements OnInit {
       });
     }
     this.total = this.subtotal + this.deliveryCost;
+
+    this.restartOrderStatus();
   }
 
 
@@ -139,9 +144,9 @@ export class ShoppingCartComponent implements OnInit {
 
   placeOrder(): void {
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You will need to call the admin to revert this!",
-      icon: 'warning',
+      title: 'Order placing',
+      text: "Please make sure you ordered all the items you need",
+      icon: 'info',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
@@ -149,19 +154,79 @@ export class ShoppingCartComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire(
-          'Deleted!',
+          'Confirmed!',
           'Your order has been placed.',
           'success'
         )
-        console.log(this.intializeOder());
         this.orderApiService.post(this.intializeOder()).subscribe((answer) => {
           console.log(answer);
+          localStorage.setItem('order', JSON.stringify(answer));
         });
-        localStorage.removeItem('items');
-        window.location.reload();
+        this.orderStatus = "pending payment";
       }
     })
     //console.log('order placed');
+  }
+
+  checkOrderStatusForPlacing(): boolean {
+    ;
+    if (!this.order
+      || this.checkItemsContent()
+      || this.orderStatus !== "ongoing") {
+      return true;
+    }
+    return false;
+  }
+
+  checkOrderStatusForPaying(): boolean {
+    if (this.orderStatus === "paid" || this.orderStatus === "ongoing") {
+      return true;
+    }
+    return false;
+  }
+
+  checkOrderStatusForCanceling(): boolean {
+    if (this.orderStatus === "paid"
+    || this.orderStatus === "pending payment"
+    || this.orderStatus === "canelled") {
+      return true;
+    }
+    return false;
+  }
+
+  checkItemsContent(): boolean {
+    if (this.uniqueItems.length > 0) {
+      return false;
+    }
+    return true;
+  }
+
+  restartOrderStatus(): void {
+    this.orderStatus = "ongoing";
+  }
+
+  payOrder(): void {
+    this.order=JSON.parse(localStorage.getItem('order') || "[]");
+    if (this.order?.id) {
+      this.orderApiService.pay(this.order.id, this.order)
+        .subscribe(data => {
+          this.orderStatus = "paid";
+          Swal.fire(`The order with ID: ${data.id} has been paid`)
+            .then(() => { this.clearCart(); })
+
+        })
+    }
+  }
+
+  cancelOrder(): void {
+    if (this.order?.id)
+      this.orderApiService.cancel(this.order.id, this.order)
+        .subscribe(data => {
+          this.orderStatus = "ongoing";
+          localStorage.removeItem('order')
+          Swal.fire(`The order with ID: ${data.id} has been cancelled`)
+            .then(() => { this.clearCart(); })
+        })
   }
 
   intializeOder(): Order {
@@ -176,7 +241,6 @@ export class ShoppingCartComponent implements OnInit {
     };
 
     return newOrder;
-
-
   }
+
 }

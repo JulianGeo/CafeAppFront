@@ -47,7 +47,6 @@ export class LogingFormComponent implements OnInit {
   onSubmit(): void {
     this.userService.login(this.formLogin.value)
       .then(response => {
-
         this.fetchUserData();
         this.router.navigate(['/main'])
       })

@@ -1,3 +1,6 @@
+<div ngClass="title">
+  <h1>Shopping Cart</h1>
+</div>
 <div class="shopping-cart-container">
   <div class="cart-items-container">
     <div class="cart-item" *ngFor="let item of uniqueItems">
@@ -26,15 +29,19 @@
       </div>
     </div>
     <div ngClass="order-settings">
-      <button mat-raised-button color="primary" style="margin: 5px" (click)="placeOrder()">Place Order</button>
+      <button mat-raised-button color="primary" style="margin: 5px" (click)="placeOrder()"
+        [disabled]="checkOrderStatusForPlacing()">Place Order</button>
+      <button mat-raised-button color="primary" style="margin: 5px" (click)="payOrder()"
+        [disabled]="checkOrderStatusForPaying()">Pay order</button>
+      <button mat-raised-button color="primary" style="margin: 5px" (click)="clearCart()"
+        [disabled]="checkItemsContent()">Clear cart</button>
+      <button mat-raised-button color="primary" style="margin: 5px" (click)="cancelOrder()"
+        [disabled]="checkOrderStatusForCanceling()">Cancel last order</button>
     </div>
   </div>
 
   <div class="cart-summary-container">
-    <mat-slide-toggle
-    class="shipping-slider"
-    checked=false
-    (click)="enableDelivery()">
+    <mat-slide-toggle class="shipping-slider" checked=false (click)="enableDelivery()">
       Delivery
     </mat-slide-toggle>
     <div class="cart-summary">

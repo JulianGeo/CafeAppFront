@@ -34,6 +34,14 @@ export class OrdersApiService {
     return this.http.put(this.api+"/"+param, order);
   }
 
+  pay(param: string, order:Order): Observable<any> {
+    return this.http.patch(this.api+"/pay/"+param, order);
+  }
+
+  cancel(param: string, order:Order): Observable<any> {
+    return this.http.patch(this.api+"/cancel/"+param, order);
+  }
+
   deleteByID(param: string):  Observable<any> {
     return this.http.delete(this.api+"/"+param);
   }
