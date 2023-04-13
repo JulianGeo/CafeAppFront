@@ -47,7 +47,7 @@ const routes: Routes = [
   {
     path: 'shoppingcart',
     component: ShoppingCartComponent,
-    ...canActivate(() => redirectUnauthorizedTo(['/login'])),
+    ...canActivate(() => redirectUnauthorizedTo(['/auth'])),
   },
   {
     path: '**',
