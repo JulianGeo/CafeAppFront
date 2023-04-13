@@ -28,6 +28,7 @@ import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.compo
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { OurPlacesComponent } from './pages/our-places/our-places.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
     ItemListContainerComponent,
     ShoppingCartComponent,
     SpinnerComponent,
+    OurPlacesComponent,
 
   ],
   imports: [
@@ -58,6 +60,7 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,
+
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth())
   ],

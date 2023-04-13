@@ -1,0 +1,23 @@
+.title{
+  margin-top: 20px;
+  text-align: center;
+  color: rgba(63, 18, 7, 0.589);
+  font-family: 'Architects Daughter', 'sans-serif';
+}
+
+.map-container {
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  right: 20%;
+  bottom: 10%;
+}
+
+.map-frame {
+  border: 2px solid black;
+  height: 50%;
+}
+
+#map {
+  height: 100%;
+}

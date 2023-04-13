@@ -9,6 +9,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ItemListContainerComponent } from './components/items/item-list-container/item-list-container.component';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
 import { ShoppingCartComponent } from './pages/shopping-cart/shopping-cart.component';
+import { OurPlacesComponent } from './pages/our-places/our-places.component';
 
 const routes: Routes = [
   {
@@ -31,12 +32,13 @@ const routes: Routes = [
         component: ItemListContainerComponent
       },
       {
-        path: 'places',
-        component: NotFoundComponent
-      },
-      {
         path: 'about-us',
         component: AboutUsComponent
+      },
+
+      {
+        path: 'places',
+        component: OurPlacesComponent
       }
     ]
   },
