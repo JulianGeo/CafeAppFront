@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Order } from 'src/app/models/order.model';
+import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
 import { UsersApiService } from 'src/app/services/usersapi.service';
 
@@ -10,7 +11,7 @@ import { UsersApiService } from 'src/app/services/usersapi.service';
   templateUrl: './loging-form.component.html',
   styleUrls: ['./loging-form.component.scss']
 })
-export class LogingFormComponent implements OnInit{
+export class LogingFormComponent implements OnInit {
 
   formLogin: FormGroup;
 
@@ -20,11 +21,11 @@ export class LogingFormComponent implements OnInit{
     private router: Router
   ) {
     this.formLogin = new FormGroup({
-      email: new FormControl(null,[Validators.required, Validators.email]),
+      email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null,
         [Validators.required,
-          //Validator for password, at least 6 characters, at least one letter and one number
-          Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$')])
+        //Validator for password, at least 6 characters, at least one letter and one number
+        Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$')])
     })
   }
 
@@ -34,20 +35,10 @@ export class LogingFormComponent implements OnInit{
 
   fetchUserData(): void {
     this.userApiService.getByEmail(this.formLogin.value.email)
-    .subscribe(user => {
+      .subscribe(user => {
         console.log(user);
         localStorage.setItem('user', JSON.stringify(user));
         localStorage.setItem('items', JSON.stringify([]));
-/*         let order:Order = {
-          user: user,
-          items: [],
-          subtotal: 0,
-          total: 0,
-          shipping: 0,
-          itemsQuantity: new Map<string, number>(),
-        }
-        localStorage.setItem('order', JSON.stringify(order)); */
-        //this.router.navigate(['/home']);
       });
 
   }
@@ -56,7 +47,7 @@ export class LogingFormComponent implements OnInit{
   onSubmit(): void {
     this.userService.login(this.formLogin.value)
       .then(response => {
-        //console.log(response)
+
         this.fetchUserData();
         this.router.navigate(['/main'])
       })
@@ -66,8 +57,19 @@ export class LogingFormComponent implements OnInit{
   onClick(): void {
     this.userService.loginWithGoogle()
       .then(response => {
-        //console.log(response);
+
+        let user: User = {
+          name: response.user.displayName ?
+            response.user.displayName : "user logged with google",
+          email: response.user.email ?
+            response.user.email : "user logged with google"
+        }
+
+        localStorage.setItem('items', JSON.stringify([]));
+        localStorage.setItem('user', JSON.stringify(user));
+
         this.router.navigate(['/main']);
+
       })
       .catch(error => console.log(error))
   }
