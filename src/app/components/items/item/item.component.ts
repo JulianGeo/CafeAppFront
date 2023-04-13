@@ -30,7 +30,7 @@ export class ItemComponent {
     let items: any[] = JSON.parse(localStorage.getItem('items') || '[]');
 
     if (!this.userService.getState()){
-      this.router.navigate(['/login']);
+      this.router.navigate(['/auth']);
     }
 
     if (!(items?.filter(i => i.name === this.item.name).length>0)){

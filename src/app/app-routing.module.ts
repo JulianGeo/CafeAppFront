@@ -41,34 +41,14 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'register',
-    component: RegisterFormComponent
-  },
-  {
     path: 'auth',
     component: AuthenticationComponent
-  },
-  {
-    path: 'login',
-    component: LogingFormComponent
   },
   {
     path: 'shoppingcart',
     component: ShoppingCartComponent,
     ...canActivate(() => redirectUnauthorizedTo(['/login'])),
   },
-/*   {
-    path: 'items',
-    component: ItemListContainerComponent
-  },
-  {
-    path: 'places',
-    component: LogingFormComponent
-  },
-  {
-    path: 'about-us',
-    component: AboutUsComponent
-  }, */
   {
     path: '**',
     component: NotFoundComponent

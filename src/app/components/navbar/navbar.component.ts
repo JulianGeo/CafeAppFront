@@ -22,7 +22,7 @@ export class NavbarComponent {
   logout(): void {
     this.userService.logout()
       .then(() => {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/auth']);
       })
       .catch(error => console.log(error));
   }

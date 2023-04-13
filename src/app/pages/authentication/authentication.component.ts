@@ -10,14 +10,12 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AuthenticationComponent {
 
+  haveAccount: boolean = true;
 
   constructor(
-    private userService: UserService,
-
     ) {}
-
-  isLoggedInn(): void{
-    //console.log(("the state is:" +this.userService.getState()));
+    haveAnAccount(): void{
+    this.haveAccount = !this.haveAccount;
   }
 
 

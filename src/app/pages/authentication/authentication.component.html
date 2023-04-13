@@ -1,3 +1,19 @@
-<p>authentication works!</p>
-<!-- <button (click)="checkToken()">CheckToken</button> -->
-<button (click)="isLoggedInn()">CheckToken</button>
+<div ngClass="title">
+  <h1>
+    Be part of our Sofkafe community!
+  </h1>
+</div>
+<div ngClass="auth-container">
+  <div *ngIf="haveAccount; else notLoggedIn">
+    <app-loging-form></app-loging-form>
+    <div ngClass="have-account">
+      <a (click)="haveAnAccount()">Don't have an account?</a>
+    </div>
+  </div>
+  <ng-template #notLoggedIn>
+    <app-register-form></app-register-form>
+    <div ngClass="have-account">
+      <a (click)="haveAnAccount()">Have an account?</a>
+    </div>
+  </ng-template>
+</div>
